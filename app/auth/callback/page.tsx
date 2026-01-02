@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, XCircle, Loader2 } from "lucide-react"
 
@@ -57,9 +58,14 @@ export default function AuthCallbackPage() {
 
       <div className="relative z-10 text-center p-8 max-w-md">
         {/* Logo */}
-        <h1 className="text-4xl font-black tracking-tighter mb-8 text-white">
-          HOTLAP<span className="text-primary">.AI</span>
-        </h1>
+        <Image
+          src="/hotlapai-logo.svg"
+          alt="Hotlap.ai"
+          width={130}
+          height={82}
+          className="mx-auto mb-8"
+          priority
+        />
 
         {/* Card container */}
         <div className="bg-[#0A0A0A] border border-zinc-800 rounded-xl p-8 shadow-2xl shadow-amber-900/5">

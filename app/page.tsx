@@ -64,6 +64,19 @@ export default function Page() {
         <Scene3D />
       </div>
 
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-40 pt-6 pb-4">
+        <div className="container mx-auto px-6">
+          <Image
+            src="/hotlapai-logo.svg"
+            alt="Hotlap.ai"
+            width={100}
+            height={63}
+            priority
+          />
+        </div>
+      </header>
+
       <main className="relative z-10">
         <HeroSection release={release} />
         <ShowcaseSection />
