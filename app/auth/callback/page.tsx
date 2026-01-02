@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button"
+import { CheckCircle, XCircle, Loader2 } from "lucide-react"
 
 type Status = "loading" | "success" | "error"
 
@@ -47,43 +49,58 @@ export default function AuthCallbackPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] to-[#16213e] flex items-center justify-center text-white">
-      <div className="text-center p-8 max-w-md">
-        <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-          HotLap.ai
+    <div className="min-h-screen bg-[#050505] flex items-center justify-center text-white selection:bg-amber-500/30 selection:text-amber-500">
+      {/* Ambient glow */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 blur-[150px] rounded-full" />
+      </div>
+
+      <div className="relative z-10 text-center p-8 max-w-md">
+        {/* Logo */}
+        <h1 className="text-4xl font-black tracking-tighter mb-8 text-white">
+          HOTLAP<span className="text-primary">.AI</span>
         </h1>
 
-        {status === "loading" && (
-          <div className="mb-6">
-            <div className="w-10 h-10 border-3 border-slate-700 border-t-orange-500 rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-slate-400">Processing sign in...</p>
-          </div>
-        )}
-
-        {status === "success" && (
-          <>
-            <div className="mb-6">
-              <h2 className="text-xl font-semibold text-green-500 mb-2">Sign in complete</h2>
-              <p className="text-slate-400">You can now return to the app.</p>
+        {/* Card container */}
+        <div className="bg-[#0A0A0A] border border-zinc-800 rounded-xl p-8 shadow-2xl shadow-amber-900/5">
+          {status === "loading" && (
+            <div className="py-4">
+              <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-6" />
+              <h2 className="text-xl font-bold text-white mb-2">Processing</h2>
+              <p className="text-zinc-400">Completing sign in...</p>
             </div>
-            <button
-              onClick={handleOpenApp}
-              className="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/40 transition-all cursor-pointer"
-            >
-              Open HotLap.ai
-            </button>
-            <p className="mt-6 text-sm text-slate-500">
-              You can close this window after opening the app.
-            </p>
-          </>
-        )}
+          )}
 
-        {status === "error" && (
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-red-500 mb-2">Sign in failed</h2>
-            <p className="text-slate-400">{errorMessage}</p>
-          </div>
-        )}
+          {status === "success" && (
+            <div className="py-4">
+              <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-8 h-8 text-green-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Sign in complete</h2>
+              <p className="text-zinc-400 mb-8">You can now return to the app.</p>
+              <Button
+                onClick={handleOpenApp}
+                size="lg"
+                className="w-full h-12 bg-primary hover:bg-amber-400 text-black font-bold tracking-tight transition-all duration-300 rounded-md shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)]"
+              >
+                Open Hotlap.ai
+              </Button>
+              <p className="mt-6 text-sm text-zinc-600">
+                You can close this window after opening the app.
+              </p>
+            </div>
+          )}
+
+          {status === "error" && (
+            <div className="py-4">
+              <div className="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-6">
+                <XCircle className="w-8 h-8 text-red-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Sign in failed</h2>
+              <p className="text-zinc-400">{errorMessage}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
